@@ -11,7 +11,6 @@ public class Part1 {
         int[] ones = new int[12];
         int lines = 0;
 
-
         while(reader.hasNextLine()){
             lines++;
             String line = reader.nextLine();
