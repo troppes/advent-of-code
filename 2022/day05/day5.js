@@ -14,18 +14,18 @@ const stacks = [];
 
 while (data.length > 0) {
     // replace 3 whitespace with X, then remove brackets and lastly remove whitespaces
-    let cleaned = data[0].replace(/\s{4}/g, ESACPE_LETTER).replace(/[\[\]']+/g,'').replace(/\s/g, '');
+    let cleaned = data[0].replace(/\s{4}/g, ESACPE_LETTER).replace(/[\[\]']+/g, '').replace(/\s/g, '');
 
     data.splice(0, 1); // remove item
-    if(cleaned.startsWith('1')){
+    if (cleaned.startsWith('1')) {
         // remove blank line
         data.splice(0, 1);
         break;
     }
 
-    for(let i = 0; i < cleaned.length; i++){
-        if(cleaned[i] !== ESACPE_LETTER) {
-            if(Array.isArray(stacks[i])) {
+    for (let i = 0; i < cleaned.length; i++) {
+        if (cleaned[i] !== ESACPE_LETTER) {
+            if (Array.isArray(stacks[i])) {
                 stacks[i].push(cleaned[i]);
             } else {
                 stacks[i] = new Array(cleaned[i]);
@@ -45,7 +45,7 @@ for (const line of data) {
 
 let answer = '';
 
-for(let stack of stacks) {
+for (let stack of stacks) {
     answer += stack[0];
 }
 
