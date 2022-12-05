@@ -36,7 +36,7 @@ while (data.length > 0) {
 
 
 for (const line of data) {
-    let [qty, from, to] = line.match(/\d+/g).map(Number)
+    let [qty, from, to] = line.match(/\d+/g).map(Number);
 
     // Remove reverse() to finish part 2
     stacks[to - 1].unshift(...stacks[from - 1].splice(0, qty).reverse());
