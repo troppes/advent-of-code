@@ -13,7 +13,7 @@ const stacks = [];
 
 
 while (data.length > 0) {
-    // replace 3 whitespace with X, then remove brackets and lastly remove whitespaces
+    // replace 4 whitespace with X, then remove brackets and lastly remove whitespaces
     let cleaned = data[0].replace(/\s{4}/g, ESACPE_LETTER).replace(/[\[\]']+/g, '').replace(/\s/g, '');
 
     data.splice(0, 1); // remove item
