@@ -20,16 +20,13 @@ for (let i = 0; i < data.length; i++) {
             case 'cd':
                 if (lineInformation[2] === '..') {
                     fileSystem.moveOut();
-                    // console.log('Current Position : ' + tree.currentPointer.key);
                 } else {
                     fileSystem.insertNewFolder(lineInformation[2]);
                 }
                 break;
             case 'ls':
                 while ((i + 1) < data.length && !(data[i + 1].startsWith('$'))) {
-                    if (data[i + 1].startsWith('dir')) {
-                        // like i give a fuck
-                    } else {
+                    if (!data[i + 1].startsWith('dir')) {
                         let file = data[i + 1].split(' ');
                         fileSystem.insertNewFile(file[0]);
                     }
@@ -40,7 +37,7 @@ for (let i = 0; i < data.length; i++) {
     }
 }
 
-console.log(fileSystem.calcSize())
+fileSystem.calcSize();
 console.log('Calc Part 1: ' + fileSystem.part1);
 // 70000000 total - 30000000 needed = 40000000 be full // substract from root to find how much is necesary to delete
 fileSystem.calcSmallestFolderToDeleteForUpdate(fileSystem.root, (fileSystem.root.size - 40000000))
