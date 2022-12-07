@@ -26,6 +26,7 @@ for (let i = 0; i < data.length; i++) {
                 break;
             case 'ls':
                 while ((i + 1) < data.length && !(data[i + 1].startsWith('$'))) {
+                    // assume folder that we do not enter do not matter
                     if (!data[i + 1].startsWith('dir')) {
                         let file = data[i + 1].split(' ');
                         fileSystem.insertNewFile(file[0]);
