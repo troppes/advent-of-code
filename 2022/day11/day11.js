@@ -5,16 +5,13 @@ let part = 2;
 let data;
 let monkeys = [];
 let supermod = 1;
-
 let rounds = part === 1 ? 20 : 10000;
-
 
 try {
     data = fs.readFileSync('input.txt', 'utf8').split('\n\n');
 } catch (err) {
     console.error(err);
 }
-
 
 for (let line of data) {
 
@@ -38,22 +35,19 @@ for (let line of data) {
 }
 
 for (let i = 0; i < rounds; i++) {
-   for(let monkey of monkeys) {
-        while(monkey.items.length > 0) {
+    for (let monkey of monkeys) {
+        while (monkey.items.length > 0) {
             let item = monkey.items.splice(0, 1);
 
-            if(part === 2){
+            if (part === 2) {
                 item %= supermod;
             }
 
             // Eval is not good, but working
             item = eval(monkey.operation.replace(/old/g, item));
-            
-            // Enable for Part1
-            if(part === 1) {
-                item = Math.floor(item / 3);
-            } else {
 
+            if (part === 1) {
+                item = Math.floor(item / 3);
             }
 
             monkey.inspectionsDone++;
@@ -64,11 +58,8 @@ for (let i = 0; i < rounds; i++) {
                 monkeys[monkey.negative].items.push(item);
             }
         }
-   } 
+    }
 }
 
-console.log(monkeys);
-
 monkeys.sort((a, b) => b.inspectionsDone - a.inspectionsDone);
-
 console.log('Solution: ' + monkeys[0].inspectionsDone * monkeys[1].inspectionsDone);
