@@ -49,7 +49,6 @@ const part1 = (line) => {
 }
 
 const part2 = (lineMin, lineMax) => {
-    let notBeacons = new Set();
 
     for (let line = lineMin; line <= lineMax; line++) {
         let ranges = [];
