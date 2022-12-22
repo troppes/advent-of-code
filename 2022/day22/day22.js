@@ -1,4 +1,3 @@
-import { dir } from 'console';
 import * as fs from 'fs';
 
 let data;
@@ -16,14 +15,10 @@ const doMaze = (maze, instructions) => {
     let y = 0;
     // find first tile that is not empty
     let x = maze[y].findIndex(tile => tile !== ' ');
-
     let direction = 0;
 
-    let counter = 0;
     for (let step of instructions) {
-        counter++;
-        //if (counter === 54) break;
-        console.log('---'+ step +'---');
+        console.log('---' + step + '---');
         if (isNaN(step)) {
             // Turn
             if (step === 'L') {
@@ -95,19 +90,15 @@ const doMaze = (maze, instructions) => {
                             break;
                     }
                 }
-                
-                
+
                 if (nextStep === '.') {
                     x = newX;
                     y = newY;
                 }
             }
         }
-        console.log('Row ' + (y+1));
-        console.log('Column ' + (x+1));
-        console.log('Direction ' + directions[direction]);
     }
-    return 1000 * (y + 1) + 4 * (x + 1) + direction 
+    return 1000 * (y + 1) + 4 * (x + 1) + direction;
 }
 
 function checkInBoud(maze, x, y) {
@@ -120,7 +111,7 @@ const parseInput = (data) => {
     const instructions = data[1].match(/(\d+)|([A-Z]+)/gi).map(step => isNaN(+step) ? step : +step);
     const maze = data[0].split('\n').map(row => row.split(''));
 
-    return [maze, instructions]
+    return [maze, instructions];
 }
 
 
