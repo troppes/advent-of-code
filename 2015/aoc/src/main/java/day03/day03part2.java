@@ -62,6 +62,6 @@ public class day03part2 {
             houses.add(new Point(currentX, currentY));
             houses.add(new Point(currentRoboX, currentRoboY));
         }
-        System.out.println(houses.size());
+        System.out.println("Santa and Robo-Santa visited "+houses.size()+" houses.");
     }
 }

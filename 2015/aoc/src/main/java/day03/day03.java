@@ -39,6 +39,6 @@ public class day03 {
             }
             houses.add(new Point(currentX, currentY));
         }
-        System.out.println(houses.size());
+        System.out.println("Santa visited "+houses.size()+" houses.");
     }
 }
