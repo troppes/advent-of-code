@@ -1,5 +1,8 @@
-AdventOfCode2021.iml
 .idea/
 .vscode/
 out/
 **/input.txt
+**/input_test.txt
+**/input_test2.txt
+2015/aoc/target
+*.iml
