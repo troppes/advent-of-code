@@ -25,3 +25,11 @@ func Reduce[T any, U any](array []T, reducer func(acc U, val T) U, initialValue 
 	}
 	return result
 }
+
+func Shift[T any](slice []T) (T, []T) {
+	if len(slice) == 0 {
+		var zeroT T
+		return zeroT, slice
+	}
+	return slice[0], slice[1:]
+}
