@@ -1,13 +1,15 @@
 package util
 
-import "strconv"
+import (
+	"strconv"
+)
 
 type Coordinate struct {
 	X int
 	Y int
 }
 
-func (a *Coordinate) compare(b *Coordinate) bool {
+func (a *Coordinate) Compare(b *Coordinate) bool {
 	if a == b {
 		return true
 	}
@@ -22,4 +24,8 @@ func (a *Coordinate) compare(b *Coordinate) bool {
 
 func (c *Coordinate) String() string {
 	return strconv.Itoa(c.X) + "," + strconv.Itoa(c.Y)
+}
+
+func (p *Coordinate) ManhattanDistance(q *Coordinate) int {
+	return Abs(p.X-q.X) + Abs(p.Y-q.Y)
 }
