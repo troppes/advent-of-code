@@ -11,13 +11,7 @@ var testsPart1 = []struct {
 	input    string
 	solution int
 }{
-	{"line1", `???.### 1,1,3`, 1},
-	{"line2", `.??..??...?##. 1,1,3`, 4},
-	{"line3", `?#?#?#?#?#?#?#? 1,3,1,6`, 1},
-	{"line4", `????.#...#... 4,1,1`, 1},
-	{"line5", `????.######..#####. 1,6,5`, 4},
-	{"line6", `?###???????? 3,2,1`, 10},
-	{"full", util.ReadInput("input_test.txt"), 21},
+	{"full", util.ReadInput("input_test.txt"), 405},
 }
 
 func TestFullPart1(t *testing.T) {
@@ -38,13 +32,7 @@ var testsPart2 = []struct {
 	input    string
 	solution int
 }{
-	{"line1", `???.### 1,1,3`, 1},
-	{"line2", `.??..??...?##. 1,1,3`, 16384},
-	{"line3", `?#?#?#?#?#?#?#? 1,3,1,6`, 1},
-	{"line4", `????.#...#... 4,1,1`, 16},
-	{"line5", `????.######..#####. 1,6,5`, 2500},
-	{"line6", `?###???????? 3,2,1`, 506250},
-	{"full", util.ReadInput("input_test.txt"), 525152},
+	{"full", util.ReadInput("input_test.txt"), 400},
 }
 
 func TestFullPart2(t *testing.T) {
