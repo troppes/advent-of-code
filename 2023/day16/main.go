@@ -37,8 +37,8 @@ func part1(input string) int {
 func part2(input string) int {
 	start := time.Now()
 	// brute force
-
 	var wg sync.WaitGroup
+
 	input = strings.ReplaceAll(input, "\r\n", "\n")
 	dimensions, _ := createGrids(input)
 
@@ -48,13 +48,14 @@ func part2(input string) int {
 		go func(x int) {
 			defer wg.Done()
 			grid, hits := createGrids(input)
-			c1 := calculateEnergized(grid, hits, 0, x, 'D')
+			maximumChan <- calculateEnergized(grid, hits, 0, x, 'D')
+		}(x)
 
-			grid, hits = createGrids(input)
-			c2 := calculateEnergized(grid, hits, len(grid)-1, x, 'U')
-
-			currMax := max(c1, c2)
-			maximumChan <- currMax
+		wg.Add(1)
+		go func(x int) {
+			defer wg.Done()
+			grid, hits := createGrids(input)
+			maximumChan <- calculateEnergized(grid, hits, len(grid)-1, x, 'U')
 		}(x)
 	}
 
@@ -63,13 +64,14 @@ func part2(input string) int {
 		go func(y int) {
 			defer wg.Done()
 			grid, hits := createGrids(input)
-			c1 := calculateEnergized(grid, hits, y, 0, 'R')
+			maximumChan <- calculateEnergized(grid, hits, y, 0, 'R')
+		}(y)
 
-			grid, hits = createGrids(input)
-			c2 := calculateEnergized(grid, hits, y, len(grid[0])-1, 'L')
-
-			currMax := max(c1, c2)
-			maximumChan <- currMax
+		wg.Add(1)
+		go func(y int) {
+			defer wg.Done()
+			grid, hits := createGrids(input)
+			maximumChan <- calculateEnergized(grid, hits, y, len(grid[0])-1, 'L')
 		}(y)
 	}
 
