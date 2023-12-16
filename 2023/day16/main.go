@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"strings"
+	"sync"
+	"time"
 
 	"github.com/troppes/advent-of-code/util"
 )
@@ -33,37 +35,58 @@ func part1(input string) int {
 }
 
 func part2(input string) int {
+	start := time.Now()
 	// brute force
+
+	var wg sync.WaitGroup
 	input = strings.ReplaceAll(input, "\r\n", "\n")
 	dimensions, _ := createGrids(input)
 
-	maximum := -1
+	maximumChan := make(chan int)
 	for x := 0; x < len(dimensions[0]); x++ {
-		grid, hits := createGrids(input)
-		c1 := calculateEnergized(grid, hits, 0, x, 'D')
+		wg.Add(1)
+		go func(x int) {
+			defer wg.Done()
+			grid, hits := createGrids(input)
+			c1 := calculateEnergized(grid, hits, 0, x, 'D')
 
-		grid, hits = createGrids(input)
-		c2 := calculateEnergized(grid, hits, len(grid)-1, x, 'U')
+			grid, hits = createGrids(input)
+			c2 := calculateEnergized(grid, hits, len(grid)-1, x, 'U')
 
-		currMax := max(c1, c2)
-		if currMax > maximum {
-			maximum = currMax
-		}
+			currMax := max(c1, c2)
+			maximumChan <- currMax
+		}(x)
 	}
 
 	for y := 0; y < len(dimensions); y++ {
-		grid, hits := createGrids(input)
-		c1 := calculateEnergized(grid, hits, y, 0, 'R')
+		wg.Add(1)
+		go func(y int) {
+			defer wg.Done()
+			grid, hits := createGrids(input)
+			c1 := calculateEnergized(grid, hits, y, 0, 'R')
 
-		grid, hits = createGrids(input)
-		c2 := calculateEnergized(grid, hits, y, len(grid[0])-1, 'L')
+			grid, hits = createGrids(input)
+			c2 := calculateEnergized(grid, hits, y, len(grid[0])-1, 'L')
 
-		currMax := max(c1, c2)
-		if currMax > maximum {
-			maximum = currMax
+			currMax := max(c1, c2)
+			maximumChan <- currMax
+		}(y)
+	}
+
+	go func() {
+		wg.Wait()
+		close(maximumChan)
+	}()
+
+	maximum := -1
+	for val := range maximumChan {
+		if val > maximum {
+			maximum = val
 		}
 	}
 
+	elapsed := time.Since(start)
+	fmt.Println("Time taken:", elapsed)
 	return maximum
 
 }
