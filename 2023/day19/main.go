@@ -51,9 +51,7 @@ func part1(input string) int {
 }
 
 func part2(input string) int {
-
-	workflows, _ := parseInput(input)
-	return checkPossibilties("in", workflows, 1, 40000)
+	return 0
 }
 
 func parseInput(input string) (Workflows, []Part) {
