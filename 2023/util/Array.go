@@ -33,3 +33,12 @@ func Shift[T any](slice []T) (T, []T) {
 	}
 	return slice[0], slice[1:]
 }
+
+func Contains[T comparable](val T, arr []T) bool {
+	for _, v := range arr {
+		if v == val {
+			return true
+		}
+	}
+	return false
+}
