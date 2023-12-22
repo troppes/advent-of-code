@@ -34,6 +34,10 @@ func Shift[T any](slice []T) (T, []T) {
 	return slice[0], slice[1:]
 }
 
+func RemoveAtIndex[T any](s []T, index int) []T {
+	return append(s[:index], s[index+1:]...)
+}
+
 func Contains[T comparable](val T, arr []T) bool {
 	for _, v := range arr {
 		if v == val {
