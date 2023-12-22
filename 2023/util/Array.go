@@ -42,3 +42,12 @@ func Contains[T comparable](val T, arr []T) bool {
 	}
 	return false
 }
+
+func Every[T any](arr []T, condition func(T) bool) bool {
+	for _, v := range arr {
+		if !condition(v) {
+			return false
+		}
+	}
+	return true
+}
