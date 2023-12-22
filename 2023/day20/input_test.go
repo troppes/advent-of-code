@@ -11,7 +11,7 @@ var testsPart1 = []struct {
 	input    string
 	solution int
 }{
-	{"full", util.ReadInput("input_test.txt"), 62},
+	{"full", util.ReadInput("input_test.txt"), 32000000},
 }
 
 func TestFullPart1(t *testing.T) {
@@ -32,7 +32,7 @@ var testsPart2 = []struct {
 	input    string
 	solution int
 }{
-	{"full", util.ReadInput("input_test.txt"), 952408144115},
+	{"full", util.ReadInput("input_test.txt"), 0},
 }
 
 func TestFullPart2(t *testing.T) {
