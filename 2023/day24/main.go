@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 
-	// queue
 	"github.com/troppes/advent-of-code/util"
 )
 
