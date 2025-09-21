@@ -1,0 +1,5 @@
+venv
+**/input.txt
+*.egg-info
+*.DS_STORE
+*.pyc
